@@ -30,24 +30,25 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
           color: (x == 0 ? Colors.grey : (x == 1 ? Colors.black : (x == 2 ? Colors.white : Colors.teal))),
           alignment: Alignment.center,
-          child: GestureDetector(
-            onTap: (){
+          child: TextButton(
+            onPressed: (){
               setState(() {
                 x++;
                 x%=4;
               });
             },
-            child: Container(
-              alignment: Alignment.center,
-              height: 50,
-              color: Colors.red,
-              child: Text(
-                x == 0 ? "Black" : (x == 1 ? "White" : (x == 2 ? "Teal" : "Grey")),
-                style: TextStyle(
-                  fontSize: 20.5,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.green,
+              shadowColor: Colors.red,
+              onSurface: Colors.white,
+              elevation: 20,
+            ),
+            child: Text(
+              x == 0 ? "Black" : (x == 1 ? "White" : (x == 2 ? "Teal" : "Grey")),
+              style: TextStyle(
+                fontSize: 20.5,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
