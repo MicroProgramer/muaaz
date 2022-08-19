@@ -8,11 +8,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-  int x = 0;
+  int x = 1;
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
@@ -26,34 +26,38 @@ class _HomeScreenState extends State<HomeScreen> {
             Icon(Icons.check),
           ],
         ),
-        body:
-        Container(
-          color: (x == 0 ? Colors.grey : (x == 1 ? Colors.black : (x == 2 ? Colors.white : Colors.teal))),
-          alignment: Alignment.center,
-          child: TextButton(
-            onPressed: (){
-              setState(() {
-                x++;
-                x%=4;
-              });
-            },
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.green,
-              shadowColor: Colors.red,
-              onSurface: Colors.white,
-              elevation: 20,
-            ),
-            child: Text(
-              x == 0 ? "Black" : (x == 1 ? "White" : (x == 2 ? "Teal" : "Grey")),
-              style: TextStyle(
-                fontSize: 20.5,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+        body: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/$x.png'),
+                  // fit: BoxFit.containi
+                ),
+                shape: BoxShape.circle,
               ),
             ),
-          ),
+            // Center(
+            //   child: Container(
+            //     color: Colors.grey.withOpacity(.4),
+            //     width: size.width,
+            //     height: size.height * .3,
+            //   ),
+            // )
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              x %= 3;
+              x++;
+            });
+          },
+          child: Icon(Icons.add),
         ),
       ),
     );
   }
+
+  void changeIndex(String path, {int? newIndex}) {}
 }
